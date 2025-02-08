@@ -4,16 +4,13 @@ namespace CursoEntityCore.Models
 {
     public class Etiqueta
     {
-        [Key]
-        public int EtiquetaId { get; set; }
-        
-        [Required(ErrorMessage = "El titulo es obligtorio")]
-        [StringLength(80, ErrorMessage = "El titulo no puede superar los 80 caracteres")]
-        public string Titulo { get; set; }
-        
-        [DataType(DataType.Date)]
-        public DateTime Fecha { get; set; }
+        public int EtiquetaId { get; set; } // Clave primaria
 
+        public string Titulo { get; set; } // Título de la etiqueta
+
+        public DateTime Fecha { get; set; } // Fecha de creación
+
+        // Relación muchos a muchos con Articulo a través de ArticuloEtiqueta
         public ICollection<ArticuloEtiqueta> ArticuloEtiqueta { get; set; } = new List<ArticuloEtiqueta>();
     }
 }

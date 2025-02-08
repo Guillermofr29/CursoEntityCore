@@ -4,19 +4,15 @@ namespace CursoEntityCore.Models
 {
     public class Categoria
     {
-        [Key]
-        public int CategoriaId { get; set; }
+        public int CategoriaId { get; set; } // Clave primaria
 
-        [Required(ErrorMessage = "El nombre de la categoría es obligatorio")]
-        [StringLength(50, ErrorMessage = "La Categoría no puede superar los 50 caracteres")]
-        public string Nombre { get; set; }
+        public string Nombre { get; set; } // Nombre de la categoría
 
-        [DataType(DataType.Date)]
-        public DateTime FechaCreacion { get; set; }
+        public DateTime FechaCreacion { get; set; } // Fecha de creación
 
-        public bool Activo { get; set; }
+        public bool Activo { get; set; } = true; // Valor por defecto
 
-        public List<Articulo> Articulo { get; set; }
-
+        // Relación 1:N (Una categoría tiene muchos artículos)
+        public List<Articulo> Articulo { get; set; } = new List<Articulo>();
     }
 }

@@ -4,6 +4,7 @@ using CursoEntityCore.Datos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CursoEntityCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250203002414_RangeCalificacionArticulo")]
+    partial class RangeCalificacionArticulo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,7 +152,7 @@ namespace CursoEntityCore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UsuarioId"), 1L, 1);
 
-                    b.Property<int?>("DetalleUsuarioId")
+                    b.Property<int>("DetalleUsuarioId")
                         .HasColumnType("int");
 
                     b.Property<string>("Direccion")
@@ -171,8 +173,7 @@ namespace CursoEntityCore.Migrations
                     b.HasKey("UsuarioId");
 
                     b.HasIndex("DetalleUsuarioId")
-                        .IsUnique()
-                        .HasFilter("[DetalleUsuarioId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Usuario");
                 });
@@ -211,7 +212,9 @@ namespace CursoEntityCore.Migrations
                 {
                     b.HasOne("CursoEntityCore.Models.DetalleUsuario", "DetalleUsuario")
                         .WithOne("Usuario")
-                        .HasForeignKey("CursoEntityCore.Models.Usuario", "DetalleUsuarioId");
+                        .HasForeignKey("CursoEntityCore.Models.Usuario", "DetalleUsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("DetalleUsuario");
                 });

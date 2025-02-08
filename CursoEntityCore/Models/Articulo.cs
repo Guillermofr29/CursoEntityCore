@@ -5,26 +5,21 @@ namespace CursoEntityCore.Models
 {
     public class Articulo
     {
-        [Key]
-        public int ArticuloId { get; set; }
+        public int ArticuloId { get; set; } // Clave primaria
 
-        [Required(ErrorMessage = "El titulo es obligatorio")]
-        [StringLength(50, ErrorMessage = "El titulo no puede superar los 50 caracteres")]
-        public string TituloArticulo { get; set; }
+        public string TituloArticulo { get; set; } // Título del artículo
 
-        [Required(ErrorMessage = "La descripcion es obligatoria")]
-        public string Descripcion { get; set; }
+        public string Descripcion { get; set; } // Descripción
 
-        [Required(ErrorMessage = "La calificacion es obligatoria")]
-        public double Calificacion { get; set; }
+        public double Calificacion { get; set; } // Calificación del artículo
 
-        [DataType(DataType.Date)]
-        public DateTime Fecha { get; set; }
+        public DateTime Fecha { get; set; } // Fecha de publicación
 
-        [ForeignKey("Categoria")]
+        // Relación con Categoria (1:N)
         public int CategoriaId { get; set; }
         public Categoria Categoria { get; set; }
 
-        public ICollection<ArticuloEtiqueta> ArticuloEtiqueta { get; set;} = new List<ArticuloEtiqueta>();
+        // Relación muchos a muchos con Etiqueta a través de ArticuloEtiqueta
+        public ICollection<ArticuloEtiqueta> ArticuloEtiqueta { get; set; } = new List<ArticuloEtiqueta>();
     }
 }

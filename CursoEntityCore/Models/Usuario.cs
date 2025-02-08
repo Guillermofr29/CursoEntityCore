@@ -14,6 +14,7 @@ namespace CursoEntityCore.Models
 
         [Required(ErrorMessage = "El email es obligatorio")]
         [EmailAddress(ErrorMessage = "Ingresa un email válido")]
+
         public string Email { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = true)]
@@ -23,7 +24,7 @@ namespace CursoEntityCore.Models
         public int Edad { get; set; }
 
         [ForeignKey("DetalleUsuario")]
-        public int DetalleUsuarioId { get; set; }
+        public int? DetalleUsuarioId { get; set; }
         public DetalleUsuario DetalleUsuario { get; set; }
     }
 }
